@@ -1,13 +1,11 @@
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link, Grid, Box, Typography, Container } from "@mui/material";
 import { object, string, TypeOf } from "zod";
-import { StyledAvatar } from "./styles.ts";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "../../hooks/useAuth.ts";
+import { useAuth } from "../../../hooks/useAuth.ts";
 import { LoadingButton } from "@mui/lab";
-import { empty } from "../../helpers";
-import { Input } from "../../components/Inputs/TextInput/Input.tsx";
+import { empty } from "../../../helpers";
+import { Input } from "../../../components/Inputs/TextInput/Input.tsx";
 import { Navigate } from "react-router-dom";
 
 const loginSchema = object({
@@ -20,7 +18,7 @@ const loginSchema = object({
 
 type ILogin = TypeOf<typeof loginSchema>;
 
-export function PageLogin() {
+export function CreateProduct() {
   const defaultValues: ILogin = {
     usuario: "",
     senha: "",
@@ -51,9 +49,6 @@ export function PageLogin() {
           alignItems: "center",
         }}
       >
-        <StyledAvatar>
-          <LockOutlinedIcon />
-        </StyledAvatar>
         <Typography component="h1" variant="h5">
           Login
         </Typography>
