@@ -11,6 +11,7 @@ export interface ErrorProps {
 interface AuthState {
   token: string;
   usuario: string;
+  image: string;
 }
 
 interface signInProps {
@@ -29,10 +30,16 @@ export const useAuth = () => {
   const [auth, setAuth] = useState<AuthState>(() => {
     const storagedUser = localStorage.getItem("@RAuth:user") || "";
     const storagedToken = localStorage.getItem("@RAuth:token") || "";
-    if (!empty(storagedUser) && !empty(storagedToken)) {
+    const storagedImage = localStorage.getItem("@RAuth:userImage") || "";
+    if (
+      !empty(storagedUser) &&
+      !empty(storagedToken) &&
+      !empty(storagedImage)
+    ) {
       return {
         token: storagedToken,
         usuario: storagedUser,
+        image: storagedImage,
       };
     }
     return {} as AuthState;
@@ -75,12 +82,19 @@ export const useAuth = () => {
         setError({
           error: mensagem,
         });
-        return setAuth({ token: "", usuario: "" });
+        return setAuth({ token: "", usuario: "", image: "" });
       }
+      // info placeIMG
+      // placeIMG stopped serving images on June 30, 2023.
+      // alterado para o picsum
+      const image = "https://picsum.photos/60/60";
+
       const { token, nome: usuario } = response.data;
-      setAuth({ token, usuario });
+      setAuth({ token, usuario, image });
       localStorage.setItem("@RAuth:user", usuario);
       localStorage.setItem("@RAuth:token", token);
+      localStorage.setItem("@RAuth:userImage", image);
+
       window.location.href = "/product";
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
