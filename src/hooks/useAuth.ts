@@ -89,7 +89,8 @@ export const useAuth = () => {
       // alterado para o picsum
       const image = "https://picsum.photos/60/60";
 
-      const { token, nome: usuario } = response.data;
+      const { token, nome, sobrenome } = response.data;
+      const usuario = `${nome} ${sobrenome}`;
       setAuth({ token, usuario, image });
       localStorage.setItem("@RAuth:user", usuario);
       localStorage.setItem("@RAuth:token", token);
@@ -102,8 +103,10 @@ export const useAuth = () => {
   );
 
   const signOut = useCallback(() => {
+    console.log("signOut");
     localStorage.removeItem("@RAuth:user");
     localStorage.removeItem("@RAuth:token");
+    localStorage.removeItem("@RAuth:userImage");
     setUser(null);
 
     document.location.reload();

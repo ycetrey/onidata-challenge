@@ -5,11 +5,9 @@ import {
   useGridApiContext,
   useGridSelector,
   GridColDef,
-  GridRowParams,
 } from "@mui/x-data-grid";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { useNavigate } from "react-router-dom";
 import { Table } from "./style.ts";
 
 interface TableListProps {
@@ -35,18 +33,11 @@ function CustomPagination() {
 }
 
 export function TableList(props: TableListProps) {
-  const navigate = useNavigate();
-
   const { rows, columns } = props;
-
-  const handleRowClick = (rowData: GridRowParams) => {
-    navigate(`/product/${rowData.id}`);
-  };
 
   return (
     <Table>
       <DataGrid
-        onRowClick={(rowData) => handleRowClick(rowData)}
         rows={rows}
         columns={columns}
         slots={{

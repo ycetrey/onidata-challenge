@@ -14,7 +14,7 @@ export const Grid = styled(Box)`
 `;
 
 export const Content = styled(Box)`
-  height: calc(100vh - 74px);
+  height: calc(100vh - 100px);
   width: 100%;
 
   padding: 27px 17px;

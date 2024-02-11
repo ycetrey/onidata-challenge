@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/useAuth.ts";
 import { LoadingButton } from "@mui/lab";
 import { empty } from "../../helpers";
 import { Input } from "../../components/Inputs/Input.tsx";
+import { Navigate } from "react-router-dom";
 
 const loginSchema = object({
   usuario: string().min(1, "Usuário é obrigatório"),
@@ -20,12 +21,12 @@ const loginSchema = object({
 type ILogin = TypeOf<typeof loginSchema>;
 
 export function PageLogin() {
-  const { error: authError, signIn } = useAuth();
   const defaultValues: ILogin = {
     usuario: "",
     senha: "",
   };
 
+  const { auth, error: authError, signIn } = useAuth();
   const {
     register,
     handleSubmit,
@@ -34,6 +35,7 @@ export function PageLogin() {
     resolver: zodResolver(loginSchema),
     defaultValues,
   });
+  if (auth.usuario) return <Navigate to="/product" />;
 
   const onSubmitHandler: SubmitHandler<ILogin> = async (values: ILogin) => {
     await signIn(values);

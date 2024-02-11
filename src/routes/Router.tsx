@@ -7,13 +7,16 @@ import { DashLayout } from "../components/Layouts/Dash";
 import { PrivateRoute } from "./PrivateRoute.tsx";
 import { PageDashProductList } from "../pages/Dash/Product";
 import { PageDashProductEdit } from "../pages/Dash/Product/Edit.tsx";
+import { Page404 } from "../pages/Page404.tsx";
+
 export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
+        <Route path="" element={<PageLogin />} />
         <Route path="login" element={<PageLogin />} />
         <Route path="register" element={<PageRegister />} />
-        <Route path="product" element={<DashLayout />}>
+        <Route path="/product" element={<DashLayout />}>
           <Route
             path=""
             element={<PrivateRoute Component={PageDashProductList} />}
@@ -24,7 +27,7 @@ export function Router() {
           />
         </Route>
       </Route>
-      <Route path="*" element={<h1>Not FOUND</h1>} />
+      <Route path="*" element={<Page404 />} />
     </Routes>
   );
 }
