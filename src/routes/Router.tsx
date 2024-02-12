@@ -5,9 +5,12 @@ import { PageRegister } from "../pages/Register";
 import { DefaultLayout } from "../components/Layouts/Default";
 import { DashLayout } from "../components/Layouts/Dash";
 import { PrivateRoute } from "./PrivateRoute.tsx";
-import { PageDashProductList } from "../pages/Dash/Product";
-import { PageDashProductEdit } from "../pages/Dash/Product/Edit.tsx";
+import {
+  PageDashProductForm,
+  PageDashProductList,
+} from "../pages/Dash/Product";
 import { Page404 } from "../pages/Page404.tsx";
+import { PageDashProductView } from "../pages/Dash/Product/View.tsx";
 
 export function Router() {
   return (
@@ -22,8 +25,16 @@ export function Router() {
             element={<PrivateRoute Component={PageDashProductList} />}
           />
           <Route
+            path="add"
+            element={<PrivateRoute Component={PageDashProductForm} />}
+          />
+          <Route
             path=":id"
-            element={<PrivateRoute Component={PageDashProductEdit} />}
+            element={<PrivateRoute Component={PageDashProductView} />}
+          />
+          <Route
+            path="edit/:id"
+            element={<PrivateRoute Component={PageDashProductForm} />}
           />
         </Route>
       </Route>

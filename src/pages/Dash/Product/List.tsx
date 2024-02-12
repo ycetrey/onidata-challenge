@@ -1,5 +1,5 @@
 import { TableList } from "../../../components/TableList";
-import { GridColDef } from "@mui/x-data-grid";
+import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { Loading } from "../../../components/Loading";
 import { Box, TextField, Typography } from "@mui/material";
 import { formatPrice } from "../../../helpers/price-helper.ts";
 import { Image } from "../../../components/Image";
+import { formatDateBR } from "../../../helpers/date-helper.ts";
 
 export const PageDashProductList = () => {
   const navigate = useNavigate();
@@ -66,6 +67,17 @@ export const PageDashProductList = () => {
       minWidth: 150,
     },
     {
+      field: "createdAt",
+      headerName: "Data cadastro",
+      type: "string",
+      editable: false,
+      sortable: false,
+      minWidth: 200,
+      valueGetter: (params: GridValueGetterParams) => {
+        return formatDateBR(params.row.createdAt);
+      },
+    },
+    {
       field: "actions",
       headerName: "Ações",
       type: "number",
@@ -85,7 +97,7 @@ export const PageDashProductList = () => {
               size="small"
               onClick={onClick}
             >
-              Editar
+              visualizar
             </Button>
           </Stack>
         );
@@ -121,7 +133,13 @@ export const PageDashProductList = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "10px",
+        }}
+      >
         <Typography component={"h2"} variant={"h6"}>
           Listagem de produtos
         </Typography>

@@ -43,6 +43,7 @@ export function TableList(props: TableListProps) {
         slots={{
           pagination: CustomPagination,
         }}
+        disableColumnFilter
         initialState={{
           pagination: {
             paginationModel: {

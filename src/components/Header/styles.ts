@@ -13,7 +13,8 @@ export const Container = styled(Box)`
   position: relative;
   z-index: 3;
   justify-content: right;
-  padding-right: 30px;
+  padding-right: 5px;
+
   //& > Button.menu {
   //  height: 64px;
   //  width: 72px;

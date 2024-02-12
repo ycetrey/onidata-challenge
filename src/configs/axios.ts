@@ -11,7 +11,7 @@ api.interceptors.request.use((config) => {
 
   if (!empty(storagedUser) && !empty(storagedToken)) {
     if (config != null) {
-      config!.headers!.Authorization = `Bearer ${storagedToken}`;
+      config!.headers!.Authorization = `${storagedToken}`;
     }
   }
   return config;

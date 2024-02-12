@@ -4,8 +4,9 @@ import { CircularProgress } from "@mui/material";
 interface ImageProps {
   src: string;
   alt: string;
+  width?: number;
 }
-export function Image({ src, alt }: ImageProps) {
+export function Image({ src, alt, width = 45 }: ImageProps) {
   const FALLBACK_IMAGE = "/image-not-found.jpg";
   const [loading, setOnloading] = useState(false);
   const imageOnLoadHandler = (
@@ -30,7 +31,7 @@ export function Image({ src, alt }: ImageProps) {
   return (
     <img
       src={src}
-      width={45}
+      width={width}
       onLoad={imageOnLoadHandler}
       onError={imageOnErrorHandler}
       alt={alt}

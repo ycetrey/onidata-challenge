@@ -4,7 +4,7 @@ import { empty } from "../../../helpers";
 
 interface CustomInputProps extends BaseTextFieldProps {
   margin?: "dense" | "normal" | "none" | undefined;
-  type?: "text" | "number" | "email" | "password";
+  type?: "text" | "number" | "email" | "password" | "hidden";
   label?: string;
   value?: string | number;
   name?: string;
@@ -14,6 +14,7 @@ interface CustomInputProps extends BaseTextFieldProps {
   disabled?: boolean;
   register?: () => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  focused?: boolean;
 }
 
 export const Input: FC<CustomInputProps> = forwardRef((props, ref) => {

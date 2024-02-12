@@ -5,6 +5,7 @@ export const Container = styled(Box)`
   grid-area: Menu;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: ${(props) => props.theme.primary};
 
   -webkit-box-shadow: 5px 0px 6px 0px rgba(224, 224, 224, 1);
@@ -12,9 +13,19 @@ export const Container = styled(Box)`
   box-shadow: 5px 0px 6px 0px rgba(224, 224, 224, 1);
 
   z-index: 2;
-  width: 72px;
+  width: 250px;
   transition: 0.5s;
   height: 100vh;
+  & button {
+    width: 90%;
+    color: ${(props) => props.theme.background} !important;
+    padding: 5px 0;
+    margin: 5px 0;
+    &:hover {
+      color: ${(props) => props.theme.primary} !important;
+      background: ${(props) => props.theme.background} !important;
+    }
+  }
 
   //&.selected {
   //  color: var(--blue);
@@ -25,10 +36,6 @@ export const Container = styled(Box)`
   //  color: var(--white);
   //  background: var(--tertiary);
   //}
-
-  &.active {
-    width: 250px;
-  }
 
   ::-webkit-scrollbar {
     display: none;
