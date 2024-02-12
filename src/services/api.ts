@@ -1,5 +1,6 @@
 import { api } from "../configs/axios.ts";
 import { empty } from "../helpers";
+import { stringPriceToFloat } from "../helpers/price-helper.ts";
 
 interface Product {
   createdAt?: string;
@@ -29,6 +30,7 @@ async function getProductId(id: string): Promise<Product> {
 async function setProductData(data: Product) {
   const product = {
     ...data,
+    preco: stringPriceToFloat(data.preco),
     createdAt: new Date().toISOString(),
     avatar: "https://picsum.photos/300/300",
   };

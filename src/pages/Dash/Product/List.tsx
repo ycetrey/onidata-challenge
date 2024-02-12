@@ -151,7 +151,13 @@ export const PageDashProductList = () => {
           value={search}
           sx={{ width: "40vw", alignItems: "right" }}
         />
-        <Button>adicionar produto</Button>
+        <Button
+          onClick={() => navigate("/product/add")}
+          color={"success"}
+          variant={"outlined"}
+        >
+          adicionar produto
+        </Button>
       </Box>
       <TableList columns={columns} rows={filteredProducts} />
     </>

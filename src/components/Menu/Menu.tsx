@@ -13,10 +13,7 @@ export function Menu() {
       <Box sx={{ margin: 2 }}>
         <Image src={"/logo.webp"} alt={"Onidata"} width={150} />
       </Box>
-      <Button onClick={() => navigate("/product")}>Listar produtos</Button>
-      <Button onClick={() => navigate("/product/add")}>
-        Adicionar produtos
-      </Button>
+      <Button onClick={() => navigate("/product")}>Produtos</Button>
     </Container>
   );
 }
