@@ -6,7 +6,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { object, string, TypeOf } from "zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../../hooks/useAuth.ts";
 import { LoadingButton } from "@mui/lab";
@@ -40,13 +40,20 @@ const registerSchema = object({
   complemento: string().min(1, "Complemento é obrigatório"),
   dataNascimento: string(),
   cpf: string(),
+  cep: string(),
 });
 
 type IRegister = TypeOf<typeof registerSchema>;
 
+interface CustomProps {
+  name: string;
+  onChange: (target: object) => void;
+  mask: string;
+}
+
 const CpfMaskCustom = forwardRef<HTMLInputElement, CustomProps>(
   function TextMaskCustom(props, ref) {
-    const { onChange, mask, ...other } = props;
+    const { onChange, ...other } = props;
     const [loading, setLoading] = useState(false);
     return (
       <>
@@ -77,7 +84,7 @@ const CpfMaskCustom = forwardRef<HTMLInputElement, CustomProps>(
 
 const CepMaskCustom = forwardRef<HTMLInputElement, CustomProps>(
   function TextMaskCustom(props, ref) {
-    const { onChange, mask, ...other } = props;
+    const { onChange, ...other } = props;
     const [loading, setLoading] = useState(false);
     return (
       <>
@@ -104,6 +111,8 @@ export function PageRegister() {
   const defaultValues: IRegister = {
     nome: "",
     sobrenome: "",
+    cpf: "",
+    cep: "",
     email: "",
     senha: "",
     sexo: "",
@@ -203,7 +212,6 @@ export function PageRegister() {
           <TextField
             margin="normal"
             fullWidth
-            value={values.cpf}
             focused={true}
             label={"CPF"}
             id="cpf"
@@ -250,9 +258,8 @@ export function PageRegister() {
           >
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
-                name={"dataNascimento"}
                 label="Data Nascimento"
-                sx={{ overflowX: "hidden" }}
+                sx={{ overflowX: "hidden", width: "100%" }}
               />
             </DemoContainer>
           </LocalizationProvider>
