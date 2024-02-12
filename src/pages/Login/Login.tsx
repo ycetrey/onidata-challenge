@@ -106,7 +106,7 @@ export function PageLogin() {
           </LoadingButton>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/register" variant="body2">
                 {"Não tem uma conta? cadastre-se"}
               </Link>
             </Grid>

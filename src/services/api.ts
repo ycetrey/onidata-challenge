@@ -63,5 +63,16 @@ async function deleteProduct(id: number) {
   }
 }
 
-export { getProducts, getProductId, setProductData, deleteProduct };
+async function buscarCepJson(cep: string) {
+  const response = await api.get(`https://viacep.com.br/ws/${cep}/json`);
+  return response.data;
+}
+
+export {
+  getProducts,
+  getProductId,
+  setProductData,
+  deleteProduct,
+  buscarCepJson,
+};
 export type { Product };

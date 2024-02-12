@@ -19,6 +19,22 @@ interface signInProps {
   senha: string;
 }
 
+interface signUpProps {
+  nome: string;
+  sobrenome: string;
+  cpf: string;
+  email: string;
+  senha: string;
+  sexo: string;
+  dataNascimento: string;
+  cep: string;
+  cidade: string;
+  estado: string;
+  logradouro: string;
+  bairro: string;
+  complemento: string;
+}
+
 export const useAuth = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState<ErrorProps>({
@@ -102,6 +118,26 @@ export const useAuth = () => {
     [setError, user, setAuth],
   );
 
+  const signUp = useCallback(
+    async (values: signUpProps) => {
+      setError({
+        error: "Aguarde...",
+      });
+      try {
+        await api.post(
+          `https://6256fc506ea7037005434e84.mockapi.io/api/v1/user`,
+          values,
+        );
+      } finally {
+        window.alert("Usuario cadastrado com sucesso, realize o login");
+        window.location.href = "/login";
+        setAuth({ token: "", usuario: "", image: "" });
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setError, user, setAuth],
+  );
+
   const signOut = useCallback(() => {
     console.log("signOut");
     localStorage.removeItem("@RAuth:user");
@@ -111,5 +147,5 @@ export const useAuth = () => {
 
     document.location.reload();
   }, []);
-  return { auth, error, signIn, signOut };
+  return { auth, error, signIn, signUp, signOut };
 };
